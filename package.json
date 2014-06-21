@@ -1,0 +1,22 @@
+{
+  "name": "middleware-pipe-sample",
+  "version": "0.0.1",
+  "description": "A middleware-pipe sample",
+  "keywords": [
+    "middleware-pipe",
+    "sample"
+  ],
+  "repository": "git://github.com/miniflycn/middleware-pipe-sample.git",
+  "author": "Daniel Yang <miniflycn@gmail.com>",
+  "main": "index",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "connect": "*",
+    "gulp-replace": "*",
+    "gulp-less": "*",
+    "middleware-pipe": "*"
+  },
+  "license": "MIT"
+}
