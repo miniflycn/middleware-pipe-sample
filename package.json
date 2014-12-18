@@ -16,7 +16,7 @@
     "connect": "*",
     "gulp-replace": "*",
     "gulp-less": "*",
-    "middleware-pipe": "*"
+    "middleware-pipe": "^1.0.1"
   },
   "license": "MIT"
 }

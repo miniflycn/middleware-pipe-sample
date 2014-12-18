@@ -7,21 +7,21 @@ var connect = require('connect')
 
 connect()
   // match html
-  .use(pipeMiddle(path.join(__dirname, 'src'), /\.html$/)
-    // we can get the req
-    .pipe(function (req) {
-      return replace(/\<inline.*?src\=('|")(.*?)\1.*?\/?\>/, function (all, quz, src) {
-        var file = path.resolve(path.dirname(path.join(__dirname, 'src/', req.url)), src);
-        return fs.readFileSync(file);
-      });
-    }))
+  .use(
+    pipeMiddle(path.join(__dirname, 'src'), /\.html$/)
+      .pipe(replace(/\<inline src\=\"\.\/inline\/hello.html\" \/>/, function (all, quz, src) {
+          return fs.readFileSync(path.join(__dirname, 'src/inline/hello.html'), 'utf-8');
+      }))
+  )
   // match css
-  .use('/css', pipeMiddle(path.join(__dirname, 'src/css'), /\.css$/, function (url) {
+  .use('/css', 
+    pipeMiddle(path.join(__dirname, 'src/css'), /\.css$/, function (url) {
       // fixed the actual path
       return url.replace(/\.css$/, '.less');
-    }).pipe(function (req) {
-      return less({
+    }).pipe(
+      less({
         paths: [path.join(__dirname, 'src/css')]
-      });
-    }))
+      })
+    )
+  )
   .listen(3000);
